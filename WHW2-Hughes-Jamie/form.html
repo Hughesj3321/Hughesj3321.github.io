@@ -3,24 +3,46 @@
 
 <head>
   <title>form</title>
+	<style>
+	form background color
+	</style>
 </head>
   <img src="WHW1 Pic.jpg" width="200">
   <br><br>
+  <h1>Programming Survey</h1>
 
-<body
+<body>
+<h4>
+        <a href="index.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="table.html">Content</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href ="form.html">Form</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://www.google.com/" target="_blank">Google</a>
+    </h4>
  
 <form action="https://hughesj3321.github.io/WHW1-Hughes-Jamie/Form.html" 
 	method="POST">
-	<form>
+	
 		<label for="fname">First name:</label><br>
 		<input type="text" id="fname" name="fname"<br><br><br>
 		<label for="lname">Last name:</label><br>
 		<input type="text" id="lname" name="lname"<br>
 		<br>
-	</form>
+	
 <p>Select your favorite Programming Language.</p>
 
-	<fieldset>
+		<label for="program language's">Program Language:</label>
+		<Select id="program language" id="program language">
+			<option value="Javascript">Javasript</Option>
+			<option value="Python">Python</Option>
+			<option value="Go">Go</Option>
+			<option value="Java">Java</Option>
+			<option value="Kotlin">Kotlin</Option>
+			<option value="PHP">PHP</Option>
+			<option value="C#">C#</Option>
+			<option value="OTHER">OTHER</Option>
+		</Select><br><br>
+
+	<fieldset style="width: 20%;">
 		<legend>Years of Programming Experience</legend>
 			<input type="radio" name="years" value="0-2 years" id="0-2yrs>
 			<label for="0-2yrs">0-2 Years</label><br>
@@ -29,15 +51,13 @@
 			<input type="radio" name="years" value="6-10 years" id="6-10yrs>
 			<label for="6-10yrs">6-10 Years</label><br>
 			<input type="radio" name="years" value="10+ years" id="10+ yrs>
-			<label for="10+ yrs">10+ Years</label><br> 
+			<label for="10+ yrs">10+ Years</label><br>
 	</fieldset>
-	<form>
-		<textarea name="Comments" rows="15" cols="25">
+	
+		<textarea name="Comments" rows="15" cols="50">Comments:
 		</textarea>
-	</form>
+	
 
-</form>
-<form>
 	<input type="submit" value="Submit"> &nbsp;&nbsp;<input type="reset" value="reset">
 </form>
 	
