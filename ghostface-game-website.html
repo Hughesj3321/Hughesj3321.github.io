@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batman vs Ghostface: Gotham's Darkest Night</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Batman&family=Gotham&display=swap');
+        body {
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            font-family: 'Gotham', sans-serif;
+        }
+        .batman-font { font-family: 'Batman', cursive; }
+        .typewriter {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 2s steps(50, end);
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <header class="text-center mb-12">
+            <h1 class="text-5xl batman-font text-red-600 mb-4 animate__animated animate__fadeIn">
+                Batman vs Ghostface
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                A dark interactive narrative where the Dark Knight confronts a new terror in Gotham City
+            </p>
+        </header>
+
+        <div id="game-container" class="max-w-4xl mx-auto bg-gray-800 rounded-lg shadow-xl p-8">
+            <div id="intro-screen" class="text-center">
+                <div class="mb-8">
+                    <h2 class="text-3xl text-red-500 mb-4">Gotham Awaits Your Investigation</h2>
+                    <p class="text-gray-300 mb-6">
+                        A mysterious killer stalks the streets. As Batman, you must uncover the truth.
+                    </p>
+                </div>
+                <button id="start-game" class="bg-red-700 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105">
+                    Begin Investigation
+                </button>
+            </div>
+
+            <div id="game-screen" class="hidden">
+                <div id="narrative-display" class="mb-6 min-h-[200px] bg-gray-900 p-4 rounded-lg">
+                    <p id="story-text" class="text-gray-200"></p>
+                </div>
+
+                <div id="game-actions" class="grid grid-cols-2 gap-4">
+                    <button class="bg-blue-800 hover:bg-blue-700 text-white py-2 px-4 rounded transition duration-300">
+                        Forensic Analysis
+                    </button>
+                    <button class="bg-green-800 hover:bg-green-700 text-white py-2 px-4 rounded transition duration-300">
+                        Street Intelligence
+                    </button>
+                    <button class="bg-purple-800 hover:bg-purple-700 text-white py-2 px-4 rounded transition duration-300">
+                        Crime Scene Search
+                    </button>
+                    <button class="bg-yellow-800 hover:bg-yellow-700 text-white py-2 px-4 rounded transition duration-300">
+                        Bat-Computer Analysis
+                    </button>
+                </div>
+            </div>
+
+            <div id="ending-screen" class="hidden text-center">
+                <h2 class="text-4xl text-red-500 mb-6">Gotham's Fate Revealed</h2>
+                <div id="ending-narrative" class="bg-gray-900 p-6 rounded-lg mb-6">
+                    <p id="ending-text" class="text-gray-200"></p>
+                </div>
+                <button id="restart-game" class="bg-red-700 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-full">
+                    Restart Investigation
+                </button>
+            </div>
+        </div>
+
+        <div class="text-center mt-8">
+            <p class="text-gray-500">
+                An interactive narrative experience inspired by Batman and Ghostface
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const introScreen = document.getElementById('intro-screen');
+            const gameScreen = document.getElementById('game-screen');
+            const endingScreen = document.getElementById('ending-screen');
+            const storyText = document.getElementById('story-text');
+            const endingText = document.getElementById('ending-text');
+            
+            const startGameBtn = document.getElementById('start-game');
+            const restartGameBtn = document.getElementById('restart-game');
+            const gameActions = document.querySelectorAll('#game-actions button');
+
+            const narratives = {
+                intro: [
+                    "The night is dark in Gotham City...",
+                    "A series of brutal murders have caught Batman's attention.",
+                    "A new killer stalks the streets - Ghostface.",
+                    "Your investigation begins now."
+                ],
+                forensic: [
+                    "Analyzing forensic evidence...",
+                    "Unique DNA traces emerge.",
+                    "The killer's pattern becomes clearer."
+                ],
+                street: [
+                    "Street informants whisper dark secrets.",
+                    "Rumors of a vendetta circulate.",
+                    "Each tip brings you closer to the truth."
+                ],
+                crimeScene: [
+                    "Investigating the latest crime scene...",
+                    "Cryptic clues are left behind.",
+                    "Ghostface's method becomes more intricate."
+                ],
+                batComputer: [
+                    "Bat-Computer analyzing data...",
+                    "Connections between crimes reveal themselves.",
+                    "A complex network of violence emerges."
+                ]
+            };
+
+            const endings = [
+                "Batman defeats Ghostface, uncovering a deep conspiracy in Gotham.",
+                "A narrow escape leaves more questions than answers.",
+                "A pyrrhic victory with significant personal cost.",
+                "An unexpected alliance reveals a shocking truth.",
+                "A psychological battle that challenges Batman's resolve."
+            ];
+
+            function typeWriter(element, text, speed = 50) {
+                element.innerHTML = '';
+                let i = 0;
+                function type() {
+                    if (i < text.length) {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    }
+                }
+                type();
+            }
+
+            function startGame() {
+                introScreen.classList.add('hidden');
+                gameScreen.classList.remove('hidden');
+                typeWriter(storyText, narratives.intro.join(' '));
+            }
+
+            function endGame() {
+                gameScreen.classList.add('hidden');
+                endingScreen.classList.remove('hidden');
+                typeWriter(endingText, endings[Math.floor(Math.random() * endings.length)]);
+            }
+
+            startGameBtn.addEventListener('click', startGame);
+            restartGameBtn.addEventListener('click', () => {
+                endingScreen.classList.add('hidden');
+                startGame();
+            });
+
+            gameActions.forEach(action => {
+                action.addEventListener('click', (e) => {
+                    const narrativeKey = e.target.textContent.replace(/\s+/g, '').toLowerCase();
+                    const selectedNarrative = narratives[narrativeKey] || [];
+                    typeWriter(storyText, selectedNarrative.join(' '));
+
+                    // Random chance to trigger ending
+                    if (Math.random() < 0.3) {
+                        endGame();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
